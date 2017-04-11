@@ -15,7 +15,7 @@ systemd-nspawn -M audioserver -D container -- /install-files/install/install.sh
 
 # Copy initial files to fresh bind
 mkdir mysettings
-systemd-nspawn -M audioserver -D container --bind=$(pwd)/mysettings:/mysettings -- /bin/bash -c "cp -Rn /settings/* /mysettings/"
+systemd-nspawn -M audioserver -D container --bind=$(pwd)/mysettings:/mysettings -- /bin/bash -c "cp -Rpn /settings/* /mysettings/"
 
 # To boot the new machine,
 #    systemd-nspawn -M audioserver -D container --bind=$(pwd)/mysettings:/settings -b

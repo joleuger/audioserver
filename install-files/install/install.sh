@@ -3,7 +3,7 @@
 apt-get update -qq
 
 #setup systemd (from https://github.com/solita/docker-systemd/blob/master/Dockerfile)
-apt-get install -qy systemd dbus libpam-systemd systemd-container
+apt-get install -qy systemd dbus libpam-systemd systemd-container net-tools
 #find /etc/systemd/system \
 #         /lib/systemd/system \
 #         -path '*.wants/*' \
@@ -47,6 +47,7 @@ mkdir /etc/icecast2
 apt-get install -qy icecast2
 ln -sf /settings/icecast.xml /etc/icecast2/
 ffmpeg -f lavfi -i aevalsrc=0 -t 5 /usr/share/icecast2/web/silence.mp3
+sed -i -e 's/false/true/g' /etc/default/icecast2
 #systemctl enable icecast2
 
 
@@ -73,10 +74,10 @@ cargo build --release
 
 
 # setup mopidy
-apt-get install -qy python-dev python-gst-1.0 gir1.2-gstreamer-1.0 gir1.2-gst-plugins-base-1.0 gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly gstreamer1.0-tools wget
+apt-get install -qy python-dev python-gst-1.0 gir1.2-gstreamer-1.0 gir1.2-gst-plugins-base-1.0 gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly gstreamer1.0-tools wget python-setuptools
 cd /tmp/build
 wget https://pypi.python.org/packages/11/b6/abcb525026a4be042b486df43905d6893fb04f05aac21c32c638e939e447/pip-9.0.1.tar.gz#md5=35f01da33009719497f01a4ba69d63c9
-easy_install pip-9.0.1
+easy_install pip-9.0.1.tar.gz
 pip install -U Mopidy==2.1.0
 pip install -U Mopidy-Iris==2.13.12 Mopidy-Local-SQLite==1.0.0 Mopidy-Moped==0.7.0
 
@@ -84,15 +85,16 @@ pip install -U Mopidy-Iris==2.13.12 Mopidy-Local-SQLite==1.0.0 Mopidy-Moped==0.7
 
 # setup user audioserver
 adduser --disabled-password --gecos "" audioserver
+ln -s /settings/home_audioserver_.config /home/audioserver/.config
 mkdir -p /home/audioserver/.config/systemd/user/default.target.wants/
 ln -s ../audioserver-user-first-run.service /home/audioserver/.config/systemd/user/default.target.wants/
 ln -s ../audioserver-user-update.service /home/audioserver/.config/systemd/user/default.target.wants/
-ln -s /settings/home_audioserver_.config /home/audioserver/.config
 ln -s /settings/home_audioserver_.asoundrc /home/audioserver/.asoundrc
 chown -R audioserver:audioserver /settings/home_audioserver_.config
 chown -R audioserver:audioserver /settings/home_audioserver_.asoundrc
 chown -R audioserver:audioserver /home/audioserver/.config
 chown -R audioserver:audioserver /home/audioserver/.asoundrc
+chmod 755 /settings/home_audioserver_.config
 
 #rm -rf /tmp/build
 
