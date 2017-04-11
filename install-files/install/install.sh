@@ -45,6 +45,7 @@ apt-get install -qy gstreamer1.0-plugins-ugly lame gstreamer1.0-plugins-good ffm
 mkdir /etc/icecast2
 apt-get install -qy icecast2
 ln -sf /settings/icecast.xml /etc/icecast2/
+chmod 755 /settings/icecast.xml
 ffmpeg -f lavfi -i aevalsrc=0 -t 5 /usr/share/icecast2/web/silence.mp3
 sed -i -e 's/false/true/g' /etc/default/icecast2
 #systemctl enable icecast2

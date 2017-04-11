@@ -15,4 +15,6 @@ Docker and rkt support will follow.
 
 To create the distribution, run ``sh create-systemd-container.sh``.
 
+Icecast is accessible at http://hostname:8000, and Mopidy at http://hostname:6680
+
 Please consult ``create-systemd-container.sh`` for more information.
