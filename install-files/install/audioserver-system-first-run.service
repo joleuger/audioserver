@@ -1,6 +1,6 @@
 [Unit]
 Description=audioserver system first run script
-ConditionPathExistsGlob=/settings/firstrun{,.txt}
+ConditionPathExistsGlob=!/settings/system.version
 
 [Service]
 Type=oneshot

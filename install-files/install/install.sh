@@ -38,7 +38,7 @@ cp -Rf /install-files/playlists/* /media/music/playlists
 
 # setup basic stuff and build tools
 apt-get install -qy build-essential pulseaudio libpam-systemd git autotools-dev autoconf libtool gettext gawk gperf libunistring-dev libsqlite3-dev libavcodec-dev libavformat-dev libavfilter-dev libswscale-dev libavutil-dev libasound2-dev libpulse-dev libevent-dev libavahi-client-dev
-mkdir -p /tmp/build
+mkdir -p /build
 
 # setup icecast
 apt-get install -qy gstreamer1.0-plugins-ugly lame gstreamer1.0-plugins-good ffmpeg
@@ -52,8 +52,8 @@ sed -i -e 's/false/true/g' /etc/default/icecast2
 
 # setup snapcast
 apt-get install -qy libasound2-dev libvorbisidec-dev libvorbis-dev libflac-dev alsa-utils libavahi-client-dev avahi-daemon
-cd /tmp/build
-git fetch https://github.com/badaix/snapcast.git
+cd /build
+git clone https://github.com/badaix/snapcast.git
 cd snapcast
 git checkout tags/v0.11.1
 cd externals
@@ -65,20 +65,26 @@ cp snapserver /usr/local/bin
 
 # setup librespot
 apt-get install -qy cargo
-cd /tmp
-git fetch https://github.com/plietar/librespot.git
+cd /build
+git clone https://github.com/plietar/librespot.git
 cd librespot
 git checkout d551d194d38ad89f6b4c842537b7c3f534b3bf89
-cargo build --release
+#cargo build --release  --features "pulseaudio-backend"
+#cp target/release/librespot /usr/local/bin
 
 
 # setup mopidy
 apt-get install -qy python-dev python-gst-1.0 gir1.2-gstreamer-1.0 gir1.2-gst-plugins-base-1.0 gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly gstreamer1.0-tools wget python-setuptools
-cd /tmp/build
+cd /build
 wget https://pypi.python.org/packages/11/b6/abcb525026a4be042b486df43905d6893fb04f05aac21c32c638e939e447/pip-9.0.1.tar.gz#md5=35f01da33009719497f01a4ba69d63c9
 easy_install pip-9.0.1.tar.gz
 pip install -U Mopidy==2.1.0
 pip install -U Mopidy-Iris==2.13.12 Mopidy-Local-SQLite==1.0.0 Mopidy-Moped==0.7.0
+
+
+# setup shairport-sync
+apt-get install shairport-sync
+
 
 # setup systemd configurations
 ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf --force
@@ -96,6 +102,6 @@ chown -R audioserver:audioserver /home/audioserver/.config
 chown -R audioserver:audioserver /home/audioserver/.asoundrc
 chmod 755 /settings/home_audioserver_.config
 
-#rm -rf /tmp/build
+rm -rf /build
 
 exit

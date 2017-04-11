@@ -5,6 +5,7 @@ Audioserver
 Audioserver distribution with
 
 - `Mopidy <https://www.mopidy.com>`,
+- `Shairport sync`,
 - `Snapcast <https://github.com/badaix/snapcast>`, and
 - `Icecast <http://icecast.org>`.
 
