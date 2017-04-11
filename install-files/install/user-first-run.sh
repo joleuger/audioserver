@@ -3,7 +3,7 @@ systemctl --user disable --now pulseaudio.socket
 
 systemctl --user enable --now dbus.socket
 systemctl --user enable --now audioserver_pulseaudio.service
-systemctl --user enable --now audioserver_shairport.service
+#systemctl --user enable --now audioserver_shairport.service
 systemctl --user enable --now audioserver_to_icecast.service
 systemctl --user enable --now audioserver_to_snapcast.service
 systemctl --user enable --now audioserver_restart_broadcast.timer
