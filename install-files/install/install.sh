@@ -41,7 +41,7 @@ apt-get install -qy build-essential pulseaudio libpam-systemd git autotools-dev 
 mkdir -p /build
 
 # setup icecast
-apt-get install -qy gstreamer1.0-plugins-ugly lame gstreamer1.0-plugins-good ffmpeg
+apt-get install -qy gstreamer1.0-plugins-ugly lame gstreamer1.0-plugins-good ffmpeg gstreamer1.0-pulseaudio
 mkdir /etc/icecast2
 apt-get install -qy icecast2
 ln -sf /settings/icecast.xml /etc/icecast2/
@@ -74,7 +74,7 @@ git checkout d551d194d38ad89f6b4c842537b7c3f534b3bf89
 
 
 # setup mopidy
-apt-get install -qy python-dev python-gst-1.0 gir1.2-gstreamer-1.0 gir1.2-gst-plugins-base-1.0 gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly gstreamer1.0-tools wget python-setuptools
+apt-get install -qy python-dev python-gst-1.0 gir1.2-gstreamer-1.0 gir1.2-gst-plugins-base-1.0 gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly gstreamer1.0-tools wget python-setuptools gstreamer1.0-pulseaudio
 cd /build
 wget https://pypi.python.org/packages/11/b6/abcb525026a4be042b486df43905d6893fb04f05aac21c32c638e939e447/pip-9.0.1.tar.gz#md5=35f01da33009719497f01a4ba69d63c9
 easy_install pip-9.0.1.tar.gz
@@ -83,7 +83,7 @@ pip install -U Mopidy-Iris==2.13.12 Mopidy-Local-SQLite==1.0.0 Mopidy-Moped==0.7
 
 
 # setup shairport-sync
-apt-get install shairport-sync
+apt-get install -qy shairport-sync
 
 
 # setup systemd configurations

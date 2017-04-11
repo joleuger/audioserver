@@ -19,7 +19,7 @@ systemd-nspawn -M audioserver -D container --bind=$(pwd)/mysettings:/mysettings 
 
 # To boot the new machine,
 #    systemd-nspawn -M audioserver -D container --bind=$(pwd)/mysettings:/settings -b
-# To boot with an own ip, see setup-bridge.sh
+# To boot with an own ip, see setup-bridge.md
 #    systemd-nspawn -M audioserver -D container --bind=$(pwd)/mysettings:/settings --network-bridge=br_wired -b
 
 # To access the audioserver, you simply need to run for root access
