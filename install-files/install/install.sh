@@ -1,5 +1,6 @@
 #!/bin/sh
 
+export DEBIAN_FRONTEND=noninteractive
 apt-get update -qq
 
 #setup systemd (from https://github.com/solita/docker-systemd/blob/master/Dockerfile)
