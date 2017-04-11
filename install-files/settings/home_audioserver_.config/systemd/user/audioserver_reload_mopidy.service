@@ -1,0 +1,7 @@
+[Unit]
+Description=Reload mopidy
+
+[Service]
+Type=simple
+#ExecStart=/bin/systemctl --user restart audioserver_mopidy
+ExecStart=/usr/local/bin/mopidy local scan

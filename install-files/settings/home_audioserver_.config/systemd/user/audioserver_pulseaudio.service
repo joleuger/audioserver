@@ -1,0 +1,16 @@
+[Unit]
+Description=pulseaudio audioserver
+Requires=dbus.socket
+ 
+[Service]
+Type=dbus
+BusName=org.PulseAudio1
+Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=%t/bus
+#Environment=PULSE_LATENCY_MSEC=60 #maybe possible to erase, maybe set to 30
+Environment=PULSE_CONFIG=/home/audioserver/.config/pulse/daemon.conf
+StandardOutput=null
+ExecStartPre=/bin/sh -c "( [ -e /run/user/1000/snapfifo ] || mkfifo /run/user/1000/snapfifo )"
+ExecStart=/usr/bin/pulseaudio -vv
+ 
+[Install]
+WantedBy=default.target

@@ -1,0 +1,13 @@
+[Unit]
+Description=pulseaudio audioserver, forked dappd
+Requires=audioserver_pulseaudio.service
+
+[Service]
+Type=simple
+Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=%t/bus
+Environment=PULSE_CONFIG=/home/audioserver/.config/pulse/daemon.conf
+ExecStartPre=/bin/sleep 3
+ExecStart=/usr/local/sbin/forked-daapd -f -c /home/audioserver/.config/forked-daapd/forked-daapd.conf
+
+[Install]
+WantedBy=default.target

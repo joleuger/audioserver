@@ -1,0 +1,19 @@
+[Unit]
+Description=Snapcast server
+
+[Service]
+Type=simple
+Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=%t/bus
+Environment=PULSE_CONFIG=/home/audioserver/.config/pulse/daemon.conf
+ExecStartPre=/bin/sleep 3
+#ExecStartPre=/bin/sh -c "timeout 1 dd if=/run/user/1000/snapfifo of=/dev/null || true"
+StandardOutput=null
+
+# when using pulseaudio pipe directly, or pulseaudio.service creates pipe, use following
+ExecStart=/usr/local/bin/snapserver -s pipe:///run/user/1000/snapfifo?name=BroadcastOnLan&sampleformat=48000:16:2&mode=read
+
+# when pipe needs to be created
+#ExecStart=/usr/local/bin/snapserver -s pipe:///run/user/1000/snapfifo?name=BroadcastOnLan&sampleformat=48000:16:2&mode=create
+
+[Install]
+WantedBy=default.target

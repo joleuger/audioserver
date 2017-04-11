@@ -1,0 +1,14 @@
+[Unit]
+Description=pulseaudio audioserver, sound receiver for airplay requests
+Requires=audioserver_pulseaudio.service
+ 
+[Service]
+Type=simple
+Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=%t/bus
+Environment=PULSE_CONFIG=/home/audioserver/.config/pulse/daemon.conf
+ExecStartPre=/bin/sleep 3
+#ExecStart=/usr/local/bin/shairport --name Broadcast --output pulse -- -s broadcast_on_lan -n AirPlay
+ExecStart=/usr/bin/shairport-sync --name Broadcast --output pulse -- -s broadcast_on_lan -n Audioserver
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,16 @@
+# See /usr/share/doc/libasound2-plugins/README-pulse
+
+pcm.!default {
+  type pulse
+  device broadcast_on_lan
+  
+  hint {
+    show on
+    description "broadcast_on_lan Output (PulseAudio)"
+  }
+}
+
+ctl.!default {
+  type pulse
+  device broadcast_on_lan
+}

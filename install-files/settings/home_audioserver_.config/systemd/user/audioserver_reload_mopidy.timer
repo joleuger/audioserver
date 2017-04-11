@@ -1,0 +1,9 @@
+[Unit]
+Description=Reload mopidy database daily
+
+[Timer]
+OnCalendar=daily
+Persistent=false    
+ 
+[Install]
+WantedBy=timers.target

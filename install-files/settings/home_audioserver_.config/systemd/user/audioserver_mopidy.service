@@ -1,0 +1,14 @@
+[Unit]
+Description=pulseaudio audioserver, soundclient mopidy
+Requires=audioserver_pulseaudio.service
+
+[Service]
+Type=simple
+Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=%t/bus
+Environment=PULSE_CONFIG=/home/audioserver/.config/pulse/daemon.conf
+ExecStartPre=/bin/sleep 3
+#ExecStartPre=/usr/local/bin/mopidy local scan #not needed when using sqlite 
+ExecStart=/usr/local/bin/mopidy
+
+[Install]
+WantedBy=default.target

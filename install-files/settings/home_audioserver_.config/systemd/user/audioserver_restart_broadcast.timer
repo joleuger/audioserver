@@ -1,0 +1,9 @@
+[Unit]
+Description=Restart broadcast daily
+
+[Timer]
+OnCalendar=3:00
+Persistent=false
+
+[Install]
+WantedBy=timers.target

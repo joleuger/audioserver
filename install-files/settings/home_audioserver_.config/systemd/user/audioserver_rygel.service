@@ -1,0 +1,13 @@
+[Unit]
+Description=rygel uPnp
+Requires=audioserver_pulseaudio.service
+
+[Service]
+Type=simple
+Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=%t/bus
+Environment=PULSE_CONFIG=/home/audioserver/.config/pulse/daemon.conf
+ExecStartPre=/bin/sleep 3
+ExecStart=/usr/bin/rygel
+
+[Install]
+WantedBy=default.target

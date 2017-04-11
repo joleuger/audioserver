@@ -1,0 +1,4 @@
+[Match]
+Name=host0
+[Network]
+DHCP=yes

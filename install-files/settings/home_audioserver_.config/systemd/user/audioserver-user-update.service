@@ -1,0 +1,10 @@
+[Unit]
+Description=audioserver user update script
+ConditionPathExistsGlob=/home/audioserver/user.version
+
+[Service]
+Type=oneshot
+ExecStart=/install-files/install/user-update.sh
+
+[Install]
+WantedBy=multi-user.target

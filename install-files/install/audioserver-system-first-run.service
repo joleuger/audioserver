@@ -1,0 +1,10 @@
+[Unit]
+Description=audioserver system first run script
+ConditionPathExistsGlob=/settings/firstrun{,.txt}
+
+[Service]
+Type=oneshot
+ExecStart=/install-files/install/system-first-run.sh
+
+[Install]
+WantedBy=multi-user.target
