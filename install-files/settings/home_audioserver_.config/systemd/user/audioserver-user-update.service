@@ -1,6 +1,6 @@
 [Unit]
 Description=audioserver user update script
-ConditionPathExistsGlob=/home/audioserver/user.version
+ConditionPathExistsGlob=/settings/audioserver/user.version
 
 [Service]
 Type=oneshot

@@ -103,6 +103,9 @@ chown -R audioserver:audioserver /settings/home_audioserver_.asoundrc
 chown -R audioserver:audioserver /home/audioserver/.config
 chown -R audioserver:audioserver /home/audioserver/.asoundrc
 chmod 755 /settings/home_audioserver_.config
+mkdir -p /settings/audioserver
+chown -R audioserver:audioserver /settings/audioserver
+chmod 755 /settings/audioserver
 
 rm -rf /build
 

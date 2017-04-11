@@ -1,5 +1,5 @@
 #!/bin/sh
-user_version=$(cat /settings/user.version)
+user_version=$(cat /settings/audioserver/user.version)
 case $system_version in
     1)
         echo 'Latest version of user settings. No update required'

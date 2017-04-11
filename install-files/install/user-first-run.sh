@@ -12,4 +12,4 @@ systemctl --user enable --now audioserver_restart_broadcast.timer
 #systemctl --user enable --now audioserver_librespot.service
 systemctl --user enable --now audioserver_mopidy.service
 
-echo 1 > /settings/user.version
+echo 1 > /settings/audioserver/user.version
