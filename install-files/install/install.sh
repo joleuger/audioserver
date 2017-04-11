@@ -21,6 +21,12 @@ chmod 755 /install-files/install/system-first-run.sh
 chmod 755 /install-files/install/system-update.sh
 chmod 755 /install-files/install/user-first-run.sh
 chmod 755 /install-files/install/user-update.sh
+mkdir -p /etc/systemd/network
+ln -s /settings/60-host0.network /etc/systemd/network --force
+ln -s /settings/hostname /etc/hostname --force
+systemctl enable systemd-networkd.service
+systemctl enable systemd-resolved.service
+
 #ln -s ../audioserver-system-first-run.service /etc/systemd/system/multi-user.target.wants/
 
 # create config directory
@@ -29,13 +35,6 @@ cp -Rf /install-files/settings/* /settings/
 mkdir -p /media/music/playlists
 cp -Rf /install-files/playlists/* /media/music/playlists
 
-# link configurations
-mkdir -p /etc/systemd/network
-ln -s /settings/60-host0.network /etc/systemd/network --force
-ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf --force
-ln -s /settings/hostname /etc/hostname --force
-systemctl enable systemd-networkd.service
-systemctl enable systemd-resolved.service
 
 # setup basic stuff and build tools
 apt-get install -qy build-essential pulseaudio libpam-systemd git autotools-dev autoconf libtool gettext gawk gperf libunistring-dev libsqlite3-dev libavcodec-dev libavformat-dev libavfilter-dev libswscale-dev libavutil-dev libasound2-dev libpulse-dev libevent-dev libavahi-client-dev
@@ -81,7 +80,8 @@ easy_install pip-9.0.1.tar.gz
 pip install -U Mopidy==2.1.0
 pip install -U Mopidy-Iris==2.13.12 Mopidy-Local-SQLite==1.0.0 Mopidy-Moped==0.7.0
 
-
+# setup systemd configurations
+ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf --force
 
 # setup user audioserver
 adduser --disabled-password --gecos "" audioserver
