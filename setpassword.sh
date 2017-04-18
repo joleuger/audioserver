@@ -1,5 +1,5 @@
 #!/bin/sh
-export AUDIOSERVERPASSWORD=$1
-echo replace AUDIOSERVERPASSWORD by $AUDIOSERVERPASSWORD
+export MACHINE_PASSWORD=$1
+echo replace MACHINE_PASSWORD by $MACHINE_PASSWORD
 
-find ./mysettings -type f -exec sed -i -e 's/AUDIOSERVERPASSWORD/$AUDIOSERVERPASSWORD/g' {} \;
+find ./mysettings -type f -exec sed -i -e 's/MACHINE_PASSWORD/$MACHINE_PASSWORD/g' {} \;

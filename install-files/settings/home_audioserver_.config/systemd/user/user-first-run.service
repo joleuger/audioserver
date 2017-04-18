@@ -1,5 +1,5 @@
 [Unit]
-Description=audioserver system first run script
+Description=user first run script
 ConditionPathExistsGlob=!/settings/audioserver/user.version
 
 [Service]

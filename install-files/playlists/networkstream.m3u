@@ -1,2 +1,2 @@
 #EXTM3U
-http://AUDIOSERVERHOSTNAME:8000/broadcast_on_lan.mp3
+http://MACHINE_HOSTNAME:8000/broadcast_on_lan.mp3

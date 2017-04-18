@@ -1,6 +1,7 @@
 #!/bin/sh
 
 export DEBIAN_FRONTEND=noninteractive
+
 apt-get update -qq
 
 #setup systemd (from https://github.com/solita/docker-systemd/blob/master/Dockerfile)
@@ -14,10 +15,10 @@ apt-get install -qy systemd dbus libpam-systemd systemd-container net-tools
 #         -exec rm \{} \;
 systemctl set-default multi-user.target
 mkdir -p /etc/systemd/system/
-cp /install-files/install/audioserver-system-first-run.service /etc/systemd/system/audioserver-system-first-run.service
-cp /install-files/install/audioserver-system-update.service /etc/systemd/system/audioserver-system-update.service
-systemctl enable audioserver-system-first-run.service
-systemctl enable audioserver-system-update.service
+cp /install-files/install/system-first-run.service /etc/systemd/system/system-first-run.service
+cp /install-files/install/system-update.service /etc/systemd/system/system-update.service
+systemctl enable system-first-run.service
+systemctl enable system-update.service
 chmod 755 /install-files/install/system-first-run.sh
 chmod 755 /install-files/install/system-update.sh
 chmod 755 /install-files/install/user-first-run.sh
@@ -28,7 +29,7 @@ ln -s /settings/hostname /etc/hostname --force
 systemctl enable systemd-networkd.service
 systemctl enable systemd-resolved.service
 
-#ln -s ../audioserver-system-first-run.service /etc/systemd/system/multi-user.target.wants/
+#ln -s ../system-first-run.service /etc/systemd/system/multi-user.target.wants/
 
 # create config directory
 mkdir -p /settings
@@ -95,8 +96,8 @@ ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf --force
 adduser --disabled-password --gecos "" audioserver
 ln -s /settings/home_audioserver_.config /home/audioserver/.config
 mkdir -p /home/audioserver/.config/systemd/user/default.target.wants/
-ln -s ../audioserver-user-first-run.service /home/audioserver/.config/systemd/user/default.target.wants/
-ln -s ../audioserver-user-update.service /home/audioserver/.config/systemd/user/default.target.wants/
+ln -s ../user-first-run.service /home/audioserver/.config/systemd/user/default.target.wants/
+ln -s ../user-update.service /home/audioserver/.config/systemd/user/default.target.wants/
 ln -s /settings/home_audioserver_.asoundrc /home/audioserver/.asoundrc
 chown -R audioserver:audioserver /settings/home_audioserver_.config
 chown -R audioserver:audioserver /settings/home_audioserver_.asoundrc

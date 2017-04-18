@@ -1,5 +1,5 @@
 [Unit]
-Description=audioserver user update script
+Description=user update script
 ConditionPathExistsGlob=/settings/audioserver/user.version
 
 [Service]
