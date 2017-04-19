@@ -1,6 +1,6 @@
 [Unit]
 Description=pulseaudio audioserver
-Requires=dbus.socket
+#Requires=dbus.socket
  
 [Service]
 Type=simple

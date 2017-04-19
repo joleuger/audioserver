@@ -1,7 +1,7 @@
 #!/bin/sh
 systemctl --user disable --now pulseaudio.socket
 
-systemctl --user enable --now dbus.socket
+#systemctl --user enable --now dbus.socket
 systemctl --user enable --now audioserver_pulseaudio.service
 systemctl --user enable --now audioserver_snapcast.service
 systemctl --user enable --now audioserver_shairport.service
