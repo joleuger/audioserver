@@ -3,7 +3,7 @@ Description=pulseaudio audioserver
 Requires=dbus.socket
  
 [Service]
-Type=dbus
+Type=simple
 BusName=org.PulseAudio1
 Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=%t/bus
 #Environment=PULSE_LATENCY_MSEC=60 #maybe possible to erase, maybe set to 30
