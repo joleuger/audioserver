@@ -67,13 +67,24 @@ cp snapserver /usr/local/bin
 
 
 # setup librespot
-apt-get install -qy cargo
+apt-get install -qy portaudio19-dev cmake python2.7 wget
+#cd /build
+#git clone https://github.com/rust-lang/rust.git
+#cd rust
+#git checkout tags/1.17.0
+#./configure
+#make && make install
+cd /build
+wget https://static.rust-lang.org/rustup/rustup-init.sh
+chmod +x rustup-init.sh
+./rustup-init.sh -y --default-toolchain stable 
+export PATH="$HOME/.cargo/bin:$PATH"
 cd /build
 git clone https://github.com/plietar/librespot.git
 cd librespot
-git checkout d551d194d38ad89f6b4c842537b7c3f534b3bf89
-#cargo build --release  --features "pulseaudio-backend"
-#cp target/release/librespot /usr/local/bin
+git checkout d95c0b3fcd2ddfa9d09a189d73b82090420d7f56
+cargo build --release  --features "pulseaudio-backend"
+cp target/release/librespot /usr/local/bin
 
 
 # setup mopidy

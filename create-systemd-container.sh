@@ -1,16 +1,23 @@
 #!/bin/sh
 
+if [ $1 ]
+then
+PREFIX=$1
+else
+PREFIX=$(pwd)
+fi
+
 UBUNTU_VERSION=zesty
-CONTAINER_DIR=image-$UBUNTU_VERSION
-SETTINGS_DIR=$(pwd)/settings-$UBUNTU_VERSION
+CONTAINER_DIR=$PREFIX/image-$UBUNTU_VERSION
+SETTINGS_DIR=$PREFIX/settings-$UBUNTU_VERSION
 MACHINE_NAME=audioserver
 
 debootstrap --variant=minbase --arch=amd64 $UBUNTU_VERSION $CONTAINER_DIR http://archive.ubuntu.com/ubuntu/
-echo deb http://archive.ubuntu.com/ubuntu/ $UBUNTU_VERSION main restricted universe multiverse > container/etc/apt/sources.list
-echo deb http://archive.ubuntu.com/ubuntu/ $UBUNTU_VERSION-updates main restricted universe multiverse >> container/etc/apt/sources.list
-echo deb http://security.ubuntu.com/ubuntu/ $UBUNTU_VERSION-security main restricted universe multiverse >> container/etc/apt/sources.list
+echo deb http://archive.ubuntu.com/ubuntu/ $UBUNTU_VERSION main restricted universe multiverse > $CONTAINER_DIR/etc/apt/sources.list
+echo deb http://archive.ubuntu.com/ubuntu/ $UBUNTU_VERSION-updates main restricted universe multiverse >> $CONTAINER_DIR/etc/apt/sources.list
+echo deb http://security.ubuntu.com/ubuntu/ $UBUNTU_VERSION-security main restricted universe multiverse >> $CONTAINER_DIR/etc/apt/sources.list
 
-cp -Rf ./install-files container/install-files
+cp -Rf ./install-files $CONTAINER_DIR/install-files
 systemd-nspawn -M $MACHINE_NAME -D $CONTAINER_DIR -- chmod +x /install-files/install/install.sh
 sleep 1
 systemd-nspawn -M $MACHINE_NAME -D $CONTAINER_DIR -- /install-files/install/install.sh
