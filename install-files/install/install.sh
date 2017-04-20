@@ -118,6 +118,7 @@ chmod 755 /settings/home_audioserver_.config
 mkdir -p /settings/audioserver
 chown -R audioserver:audioserver /settings/audioserver
 chmod 755 /settings/audioserver
+cp /install-files/install/etc_security_limits_d_audioserver.conf /etc/security/limits.d/
 
 rm -rf /build
 

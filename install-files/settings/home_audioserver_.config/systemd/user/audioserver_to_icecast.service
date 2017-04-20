@@ -7,7 +7,7 @@ Type=simple
 Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=%t/bus
 Environment=PULSE_CONFIG=/home/audioserver/.config/pulse/daemon.conf
 ExecStartPre=/bin/sleep 3
-ExecStart=/usr/bin/gst-launch-1.0 pulsesrc device=broadcast_on_lan.monitor ! audioconvert ! lamemp3enc target=1 bitrate=256 cbr=true ! shout2send ip=127.0.0.1 port=8000 password=MACHINE_PASSWORD mount=broadcast_on_lan.mp3
+ExecStart=/usr/bin/gst-launch-1.0 pulsesrc device=broadcast_on_lan.monitor ! audioconvert ! audio/x-raw,rate=48000,channels=2,format=S16LE ! lamemp3enc target=1 bitrate=256 cbr=true ! shout2send ip=127.0.0.1 port=8000 password=MACHINE_PASSWORD mount=broadcast_on_lan.mp3
  
 [Install]
 WantedBy=default.target
