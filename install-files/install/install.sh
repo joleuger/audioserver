@@ -5,7 +5,7 @@ export DEBIAN_FRONTEND=noninteractive
 apt-get update -qq
 
 #setup systemd (from https://github.com/solita/docker-systemd/blob/master/Dockerfile)
-apt-get install -qy systemd dbus libpam-systemd systemd-container net-tools
+apt-get install -qy systemd dbus libpam-systemd systemd-container net-tools tzdata
 #find /etc/systemd/system \
 #         /lib/systemd/system \
 #         -path '*.wants/*' \

@@ -38,3 +38,4 @@ systemd-nspawn -M $MACHINE_NAME -D $CONTAINER_DIR --bind=$SETTINGS_DIR:/tmp/myse
 # or for user access
 #    machinectl shell audioserver@audioserver
 
+# Set timezone "dpkg-reconfigure tzdata"
