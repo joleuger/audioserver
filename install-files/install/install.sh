@@ -36,7 +36,8 @@ mkdir -p /settings
 cp -Rf /install-files/settings/* /settings/
 mkdir -p /media/music/playlists
 cp -Rf /install-files/playlists/* /media/music/playlists
-
+cp /etc/timezone /settings
+ln -sf /settings/timezone /etc/timezone
 
 # setup basic stuff and build tools
 apt-get install -qy build-essential pulseaudio libpam-systemd git autotools-dev autoconf libtool gettext gawk gperf libunistring-dev libsqlite3-dev libavcodec-dev libavformat-dev libavfilter-dev libswscale-dev libavutil-dev libasound2-dev libpulse-dev libevent-dev libavahi-client-dev

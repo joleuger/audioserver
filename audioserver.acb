@@ -1,0 +1,24 @@
+#!/usr/bin/env acbuild-script
+# build with 'acbuild script audioserver.acb'
+
+begin docker://ubuntu:16.10
+annotation add authors "Johannes Leupolz johannes.leupolz@gmail.com"
+annotation add appc.io/executor/supports-systemd-notify true
+set-name leupolz.eu/rkt/audioserver
+label add version 0.0.1
+label add arch amd64
+label add os linux
+copy ./install-files /install-files
+mount add settings /settings
+mount add music /media/music
+run --engine=systemd-nspawn -- /bin/sh -c "chmod +x /install-files/install/install.sh && sleep 1 && /install-files/install/install.sh"
+port add ssh tcp 22
+port add icecast tcp 8000
+#set-exec -- /bin/machinectl --uid=audioserver shell
+#set-user audioserver
+#set-group audioserver
+#set-exec -- /bin/systemd --user
+# TODO: Switch to supervisord
+set-exec -- /bin/sh
+write --overwrite audioserver-0.0.1-linux-amd64.aci
+#end
