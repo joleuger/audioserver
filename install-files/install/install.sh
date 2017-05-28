@@ -41,6 +41,7 @@ ln -sf /settings/timezone /etc/timezone
 
 # setup basic stuff and build tools
 apt-get install -qy build-essential pulseaudio libpam-systemd git autotools-dev autoconf libtool gettext gawk gperf libunistring-dev libsqlite3-dev libavcodec-dev libavformat-dev libavfilter-dev libswscale-dev libavutil-dev libasound2-dev libpulse-dev libevent-dev libavahi-client-dev
+#apt-get install -qy dbus-user-session # this can be used instead of custom user dbus.socket
 mkdir -p /build
 
 # setup icecast
