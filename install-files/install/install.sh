@@ -91,6 +91,7 @@ cp target/release/librespot /usr/local/bin
 
 # setup mopidy
 apt-get install -qy python-dev python-gst-1.0 gir1.2-gstreamer-1.0 gir1.2-gst-plugins-base-1.0 gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly gstreamer1.0-tools wget python-setuptools gstreamer1.0-pulseaudio libffi-dev python-dbus
+#apt-get install -qy python-pip
 cd /build
 wget https://pypi.python.org/packages/11/b6/abcb525026a4be042b486df43905d6893fb04f05aac21c32c638e939e447/pip-9.0.1.tar.gz#md5=35f01da33009719497f01a4ba69d63c9
 easy_install pip-9.0.1.tar.gz
@@ -99,6 +100,12 @@ easy_install pip-9.0.1.tar.gz
 #pip install -U Mopidy-MPRIS==1.3.1
 pip install -U Mopidy
 pip install -U Mopidy-Iris Mopidy-Local-SQLite Mopidy-Moped Mopidy-MPRIS
+
+# setup way to control Mopidy with command line
+apt-get install -qy python3-pip mpc
+pip3 install -U pydbus
+cp /install-files/install/control_mopidy_mpc.py /usr/local/bin
+cp /install-files/install/control_mopidy_dbus.py /usr/local/bin
 
 
 # setup shairport-sync
