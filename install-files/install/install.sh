@@ -23,6 +23,7 @@ chmod 755 /install-files/install/system-first-run.sh
 chmod 755 /install-files/install/system-update.sh
 chmod 755 /install-files/install/user-first-run.sh
 chmod 755 /install-files/install/user-update.sh
+chmod 755 /install-files/settings/audioserver_restart_broadcast.sh
 mkdir -p /etc/systemd/network
 ln -s /settings/60-host0.network /etc/systemd/network --force
 ln -s /settings/hostname /etc/hostname --force

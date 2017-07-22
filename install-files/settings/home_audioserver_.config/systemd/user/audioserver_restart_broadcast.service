@@ -3,4 +3,4 @@ Description=Restart broadcast
 
 [Service]
 Type=simple
-ExecStart=/bin/sh -c "/bin/systemctl --user stop audioserver_to_icecast.service audioserver_to_snapcast.service audioserver_snapcast.service ; dd if=/run/user/1000/snapfifo iflag=nonblock of=/dev/null ; /bin/systemctl --user start audioserver_to_icecast.service audioserver_to_snapcast.service audioserver_snapcast.service"
+ExecStart=/settings/audioserver_restart_broadcast.sh
