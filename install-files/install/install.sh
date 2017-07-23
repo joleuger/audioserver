@@ -115,8 +115,10 @@ apt-get install -qy shairport-sync
 
 # setup systemd configurations
 ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf --force
-echo SystemMaxUse=100M >> /etc/systemd/journald.conf
-echo RuntimeMaxUse=100M >> /etc/systemd/journald.conf
+mkdir -p /etc/systemd/journald.conf.d
+echo [Journal] > /etc/systemd/journald.conf.d/limit-size.conf
+echo SystemMaxUse=100M >> /etc/systemd/journald.conf.d/limit-size.conf
+echo RuntimeMaxUse=100M >> /etc/systemd/journald.conf.d/limit-size.conf
 
 # setup user audioserver
 adduser --disabled-password --gecos "" audioserver
