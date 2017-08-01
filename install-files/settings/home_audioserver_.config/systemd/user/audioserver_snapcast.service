@@ -10,7 +10,7 @@ ExecStartPre=/bin/sleep 3
 StandardOutput=null
 
 # when using pulseaudio pipe directly, or pulseaudio.service creates pipe, use following
-ExecStart=/usr/local/bin/snapserver -s pipe:///run/user/1000/snapfifo?name=BroadcastOnLan&sampleformat=48000:16:2&mode=read
+ExecStart=/usr/local/bin/snapserver -s pipe:///run/user/1000/snapfifo?name=BroadcastOnLan&sampleformat=44100:16:2&mode=read
 
 # when pipe needs to be created
 #ExecStart=/usr/local/bin/snapserver -s pipe:///run/user/1000/snapfifo?name=BroadcastOnLan&sampleformat=48000:16:2&mode=create

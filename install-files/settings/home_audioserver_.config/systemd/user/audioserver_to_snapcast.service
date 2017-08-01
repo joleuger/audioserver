@@ -8,7 +8,7 @@ Type=simple
 Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=%t/bus
 Environment=PULSE_CONFIG=/home/audioserver/.config/pulse/daemon.conf
 ExecStartPre=/bin/sleep 5
-ExecStart=/usr/bin/gst-launch-1.0 pulsesrc device=broadcast_on_lan.monitor ! audioconvert ! audio/x-raw,rate=48000,channels=2,format=S16LE ! wavenc ! filesink location=/run/user/1000/snapfifo
+ExecStart=/usr/bin/gst-launch-1.0 pulsesrc device=broadcast_on_lan.monitor ! audioconvert ! audio/x-raw,rate=44100,channels=2,format=S16LE ! wavenc ! filesink location=/run/user/1000/snapfifo
  
 [Install]
 WantedBy=default.target

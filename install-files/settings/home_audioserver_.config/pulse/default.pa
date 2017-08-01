@@ -169,7 +169,7 @@ load-module module-filter-apply
 #load-module module-zeroconf-publish
 ### For multicast-sending to 239.0.50.252 or to 225.0.0.252
 #To use pactl set PULSE_SERVER=localhost
-load-module module-null-sink rate=48000 channels=2 sink_name=broadcast_on_lan
+load-module module-null-sink rate=44100 channels=2 sink_name=broadcast_on_lan
 #load-module module-rtp-send source=broadcast_on_lan.monitor rate=44100 destination_ip=239.0.50.252
 #alternative destination_ip=225.0.0.252
 #this argument works with pulseaudio 5 inhibit_auto_suspend=only_with_non_monitor_sources
