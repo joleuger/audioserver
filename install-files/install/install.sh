@@ -61,7 +61,7 @@ apt-get install -qy libasound2-dev libvorbisidec-dev libvorbis-dev libflac-dev a
 cd /build
 git clone https://github.com/badaix/snapcast.git
 cd snapcast
-git checkout tags/v0.11.1
+git checkout tags/v0.15.0
 cd externals
 git submodule update --init --recursive
 cd ../server
@@ -94,11 +94,10 @@ cp target/release/librespot /usr/local/bin
 apt-get install -qy python-dev python-gst-1.0 gir1.2-gstreamer-1.0 gir1.2-gst-plugins-base-1.0 gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly gstreamer1.0-tools wget python-setuptools gstreamer1.0-pulseaudio libffi-dev python-dbus
 #apt-get install -qy python-pip
 cd /build
-wget https://pypi.python.org/packages/11/b6/abcb525026a4be042b486df43905d6893fb04f05aac21c32c638e939e447/pip-9.0.1.tar.gz#md5=35f01da33009719497f01a4ba69d63c9
-easy_install pip-9.0.1.tar.gz
 #pip install -U Mopidy==2.1.0
 #pip install -U Mopidy-Iris==2.13.12 Mopidy-Local-SQLite==1.0.0 Mopidy-Moped==0.7.0
 #pip install -U Mopidy-MPRIS==1.3.1
+apt-get install -qy python-pip
 pip install -U Mopidy
 pip install -U Mopidy-Iris Mopidy-Local-SQLite Mopidy-Moped Mopidy-MPRIS
 

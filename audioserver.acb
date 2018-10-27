@@ -1,7 +1,7 @@
 #!/usr/bin/env acbuild-script
 # build with 'acbuild script audioserver.acb'
 
-begin docker://ubuntu:16.10
+begin docker://ubuntu:18.04
 annotation add authors "Johannes Leupolz johannes.leupolz@gmail.com"
 annotation add appc.io/executor/supports-systemd-notify true
 set-name leupolz.eu/rkt/audioserver
