@@ -83,7 +83,7 @@ chmod +x rustup-init.sh
 ./rustup-init.sh -y --default-toolchain stable 
 export PATH="$HOME/.cargo/bin:$PATH"
 cd /build
-git clone https://github.com/plietar/librespot.git
+git clone https://github.com/librespot-org/librespot.git
 cd librespot
 #git checkout d95c0b3fcd2ddfa9d09a189d73b82090420d7f56
 cargo build --release  --features "pulseaudio-backend"
@@ -91,15 +91,14 @@ cp target/release/librespot /usr/local/bin
 
 
 # setup mopidy
-apt-get install -qy python-dev python-gst-1.0 gir1.2-gstreamer-1.0 gir1.2-gst-plugins-base-1.0 gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly gstreamer1.0-tools wget python-setuptools gstreamer1.0-pulseaudio libffi-dev python-dbus
-#apt-get install -qy python-pip
-cd /build
-#pip install -U Mopidy==2.1.0
+apt-get install -qy python3-dev python3-gst-1.0 gir1.2-gstreamer-1.0 gir1.2-gst-plugins-base-1.0 gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly gstreamer1.0-tools wget python-setuptools gstreamer1.0-pulseaudio libffi-dev python-dbus
+apt-get install -qy python3-pip
+#cd /build
+pip install -U Mopidy==3.3.0
 #pip install -U Mopidy-Iris==2.13.12 Mopidy-Local-SQLite==1.0.0 Mopidy-Moped==0.7.0
 #pip install -U Mopidy-MPRIS==1.3.1
-apt-get install -qy python-pip
-pip install -U Mopidy
-pip install -U Mopidy-Iris Mopidy-Local-SQLite Mopidy-Moped Mopidy-MPRIS
+#pip install -U Mopidy
+#pip install -U Mopidy-Iris Mopidy-Local-SQLite Mopidy-Moped Mopidy-MPRIS
 
 # setup way to control Mopidy with command line
 apt-get install -qy python3-pip mpc
