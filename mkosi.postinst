@@ -2,6 +2,15 @@
 
 export DEBIAN_FRONTEND=noninteractive
 
+
+. /etc/os-release
+echo $UBUNTU_CODENAME
+mkdir -p /etc/apt
+echo deb http://archive.ubuntu.com/ubuntu/ $UBUNTU_CODENAME main restricted universe multiverse > /etc/apt/sources.list
+echo deb http://archive.ubuntu.com/ubuntu/ $UBUNTU_CODENAME-updates main restricted universe multiverse >> /etc/apt/sources.list
+echo deb http://security.ubuntu.com/ubuntu/ $UBUNTU_CODENAME-security main restricted universe multiverse >> /etc/apt/sources.list
+
+
 apt-get update -qq
 
 #setup systemd (from https://github.com/solita/docker-systemd/blob/master/Dockerfile)

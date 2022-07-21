@@ -1,0 +1,7 @@
+[Distribution]
+Distribution=ubuntu
+Release=jammy
+
+[Output]
+Format=directory
+Bootable=no

@@ -7,15 +7,11 @@ else
 PREFIX=$(pwd)
 fi
 
-UBUNTU_VERSION=jammy
-CONTAINER_DIR=$PREFIX/image-$UBUNTU_VERSION
-SETTINGS_DIR=$PREFIX/settings-$UBUNTU_VERSION
-MACHINE_NAME=audioserver
+CONTAINER_DIR=$PREFIX/newimage
+SETTINGS_DIR=$PREFIX/newsettings
+STORAGE_DIR=$PREFIX/newstorage
 
-debootstrap --variant=minbase --arch=amd64 $UBUNTU_VERSION $CONTAINER_DIR http://archive.ubuntu.com/ubuntu/
-echo deb http://archive.ubuntu.com/ubuntu/ $UBUNTU_VERSION main restricted universe multiverse > $CONTAINER_DIR/etc/apt/sources.list
-echo deb http://archive.ubuntu.com/ubuntu/ $UBUNTU_VERSION-updates main restricted universe multiverse >> $CONTAINER_DIR/etc/apt/sources.list
-echo deb http://security.ubuntu.com/ubuntu/ $UBUNTU_VERSION-security main restricted universe multiverse >> $CONTAINER_DIR/etc/apt/sources.list
+mkosi -t directory -o $CONTAINER_DIR --force --with-network
 
 #systemd-firstboot --root=container --copy-locale --copy-timezone
 
