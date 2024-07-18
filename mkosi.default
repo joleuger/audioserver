@@ -1,6 +1,6 @@
 [Distribution]
 Distribution=ubuntu
-Release=bionic
+Release=noble
 
 [Output]
 Format=directory
