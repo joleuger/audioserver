@@ -1,0 +1,11 @@
+[Unit]
+Description=Bonob
+
+[Service]
+Type=simple
+Environment=NODE_VERSION=20
+WorkingDirectory=/opt/bonob/src
+ExecStart=/root/.nvm/nvm-exec node app.js
+
+[Install]
+WantedBy=multi-user.target

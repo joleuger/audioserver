@@ -1,6 +1,6 @@
 [Distribution]
 Distribution=ubuntu
-Release=jammy
+Release=bionic
 
 [Output]
 Format=directory

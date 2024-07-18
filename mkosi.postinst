@@ -144,6 +144,29 @@ chown -R audioserver:audioserver /settings/audioserver
 chmod 755 /settings/audioserver
 cp /install-files/install/etc_security_limits_d_audioserver.conf /etc/security/limits.d/
 
+# setup navidrome
+cd /build
+wget https://github.com/navidrome/navidrome/releases/download/v0.51.0/navidrome_0.51.0_linux_amd64.tar.gz -O Navidrome.tar.gz
+tar xvzf Navidrome.tar.gz -C /opt/navidrome/
+adduser --system --no-create-home --group navidrome
+mkdir -p /var/lib/navidrome
+echo MusicFolder = \"/music\" > /settings/navidrome.toml
+ln -s /settings/navidrome.toml /val/lib/navidrome.toml
+chown -R navidrome:navidrome /var/lib/navidrome
+systemctl enable navidrome
+
+# setup bonob
+apt-get install libvips-dev
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+nvm install 20
+cd /opt
+git clone https://github.com/simojenki/bonob.git
+cd bonob
+npm install &&     npm test &&     npm run gitinfo &&     npm run build &&  echo fertig
+NODE_ENV=production npm install --omit=dev
+cp build/src/* src
+systemctl enable bonob
+
 rm -rf /build
 
 exit
