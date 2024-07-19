@@ -4,6 +4,7 @@ Description=Bonob
 [Service]
 Type=simple
 Environment=NODE_VERSION=20
+Environment=BNB_SUBSONIC_URL=http://192.168.50.221:4533/navidrome
 WorkingDirectory=/opt/bonob/src
 ExecStart=/root/.nvm/nvm-exec node app.js
 
